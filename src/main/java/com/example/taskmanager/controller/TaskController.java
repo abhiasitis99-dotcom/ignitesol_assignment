@@ -1,3 +1,4 @@
+
 package com.example.taskmanager.controller;
 
 import com.example.taskmanager.entity.Task;
@@ -21,9 +22,13 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
+
     @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    public List<Task> getAllTasks(
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+
+        return taskService.getAllTasks(sortBy, sortDirection);
     }
 
     @GetMapping("/{id}")
